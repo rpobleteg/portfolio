@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ricardo Poblete — Desarrollador de Software</title>
+    <title id="pageTitle">Ricardo Poblete — Desarrollador de Software</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -321,6 +321,26 @@
             section { padding: 64px 0; }
         }
 
+        /* ───────── LANG TOGGLE ───────── */
+        .lang-toggle {
+            display: flex; align-items: center; gap: 6px;
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 20px; padding: 3px; cursor: pointer;
+            margin-left: 24px; user-select: none;
+        }
+        .lang-toggle span {
+            display: flex; align-items: center; justify-content: center;
+            padding: 4px 10px; border-radius: 16px;
+            font-size: .75rem; font-weight: 600; letter-spacing: .02em;
+            color: var(--text-muted); transition: all var(--transition);
+        }
+        .lang-toggle span.active {
+            background: var(--accent); color: #fff;
+        }
+        @media (max-width: 640px) {
+            .lang-toggle { margin-left: 0; margin-right: 8px; }
+        }
+
         /* ───────── ANIMATIONS ───────── */
         .fade-up {
             opacity: 0; transform: translateY(30px);
@@ -334,15 +354,21 @@
     <nav>
         <div class="container">
             <div class="logo">R<span>.</span>Poblete</div>
-            <button class="menu-toggle" aria-label="Menú" onclick="document.querySelector('nav ul').classList.toggle('active')">
-                <span></span><span></span><span></span>
-            </button>
+            <div style="display:flex;align-items:center;">
+                <div class="lang-toggle" id="langToggle">
+                    <span class="active" data-lang="es">ES</span>
+                    <span data-lang="en">EN</span>
+                </div>
+                <button class="menu-toggle" aria-label="Menú" onclick="document.querySelector('nav ul').classList.toggle('active')">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
             <ul>
-                <li><a href="#about">Sobre mí</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Proyectos</a></li>
-                <li><a href="#experience">Experiencia</a></li>
-                <li><a href="#contact">Contacto</a></li>
+                <li><a href="#about" data-i18n="nav.about">Sobre mí</a></li>
+                <li><a href="#skills" data-i18n="nav.skills">Skills</a></li>
+                <li><a href="#projects" data-i18n="nav.projects">Proyectos</a></li>
+                <li><a href="#experience" data-i18n="nav.experience">Experiencia</a></li>
+                <li><a href="#contact" data-i18n="nav.contact">Contacto</a></li>
             </ul>
         </div>
     </nav>
@@ -352,27 +378,27 @@
         <div class="container">
             <div class="hero-inner">
                 <div class="hero-text">
-                    <span class="tag">Disponible para nuevos proyectos</span>
+                    <span class="tag" data-i18n="hero.tag">Disponible para nuevos proyectos</span>
                     <h1>Ricardo <span>Poblete</span></h1>
-                    <p>Desarrollador de Software Fullstack con más de 4 años de experiencia en arquitecturas cloud, DevOps y desarrollo de soluciones escalables.</p>
+                    <p data-i18n="hero.desc">Desarrollador de Software Fullstack con más de 4 años de experiencia en arquitecturas cloud, DevOps y desarrollo de soluciones escalables.</p>
                     <div class="hero-actions">
                         <a href="#projects" class="btn btn-primary">
                             <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
-                            Ver proyectos
+                            <span data-i18n="hero.cta1">Ver proyectos</span>
                         </a>
                         <a href="#contact" class="btn btn-outline">
                             <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
-                            Contacto
+                            <span data-i18n="hero.cta2">Contacto</span>
                         </a>
                     </div>
                     <div class="hero-stats">
                         <div class="stat">
                             <h3>4+</h3>
-                            <p>Años experiencia</p>
+                            <p data-i18n="hero.stat1">Años experiencia</p>
                         </div>
                         <div class="stat">
                             <h3>6+</h3>
-                            <p>Proyectos</p>
+                            <p data-i18n="hero.stat2">Proyectos</p>
                         </div>
                         <div class="stat">
                             <h3>AWS</h3>
@@ -391,23 +417,23 @@
     <section id="about">
         <div class="container">
             <div class="section-header fade-up">
-                <span class="overline">Sobre mí</span>
-                <h2>Quién soy</h2>
+                <span class="overline" data-i18n="about.overline">Sobre mí</span>
+                <h2 data-i18n="about.title">Quién soy</h2>
             </div>
             <div class="about-grid fade-up">
                 <div class="about-text">
-                    <p>Soy Ricardo Poblete, desarrollador de software chileno, graduado de Duoc UC como Analista Programador Computacional. Con más de 4 años de experiencia, me especializo en desarrollo Fullstack y soluciones en la nube.</p>
-                    <p>Más allá de lo técnico, soy un apasionado de los marcos de trabajo ágiles (Scrum, XP, DevOps) que optimizan la entrega de valor. Mi enfoque está en la arquitectura limpia, código mantenible y la mejora continua.</p>
-                    <p>Tengo una fuerte dedicación al área de DevOps e infraestructura cloud, donde concentro gran parte de mi desarrollo profesional, con experiencia práctica en AWS, Azure y GCP.</p>
+                    <p data-i18n="about.p1">Soy Ricardo Poblete, desarrollador de software chileno, graduado de Duoc UC como Analista Programador Computacional. Con más de 4 años de experiencia, me especializo en desarrollo Fullstack y soluciones en la nube.</p>
+                    <p data-i18n="about.p2">Más allá de lo técnico, soy un apasionado de los marcos de trabajo ágiles (Scrum, XP, DevOps) que optimizan la entrega de valor. Mi enfoque está en la arquitectura limpia, código mantenible y la mejora continua.</p>
+                    <p data-i18n="about.p3">Tengo una fuerte dedicación al área de DevOps e infraestructura cloud, donde concentro gran parte de mi desarrollo profesional, con experiencia práctica en AWS, Azure y GCP.</p>
                 </div>
                 <div>
                     <ul class="info-list">
-                        <li><strong>Ubicación</strong> Chile</li>
-                        <li><strong>Experiencia</strong> 4+ años</li>
-                        <li><strong>Enfoque</strong> Fullstack & Cloud</li>
-                        <li><strong>Inglés</strong> Nivel B2</li>
-                        <li><strong>Educación</strong> Duoc UC — Analista Programador</li>
-                        <li><strong>Certificación</strong> AWS Cloud Practitioner</li>
+                        <li data-i18n-html="about.info1"><strong>Ubicación</strong> Chile</li>
+                        <li data-i18n-html="about.info2"><strong>Experiencia</strong> 4+ años</li>
+                        <li data-i18n-html="about.info3"><strong>Enfoque</strong> Fullstack & Cloud</li>
+                        <li data-i18n-html="about.info4"><strong>Inglés</strong> Nivel B2</li>
+                        <li data-i18n-html="about.info5"><strong>Educación</strong> Duoc UC — Analista Programador</li>
+                        <li data-i18n-html="about.info6"><strong>Certificación</strong> AWS Cloud Practitioner</li>
                     </ul>
                 </div>
             </div>
@@ -418,14 +444,14 @@
     <section id="skills">
         <div class="container">
             <div class="section-header fade-up">
-                <span class="overline">Habilidades</span>
-                <h2>Stack Tecnológico</h2>
+                <span class="overline" data-i18n="skills.overline">Habilidades</span>
+                <h2 data-i18n="skills.title">Stack Tecnológico</h2>
             </div>
             <div class="skills-grid fade-up">
                 <div class="skill-card">
                     <div class="icon">⚡</div>
                     <h3>Backend</h3>
-                    <p>Desarrollo de APIs robustas y servicios escalables</p>
+                    <p data-i18n="skills.backend">Desarrollo de APIs robustas y servicios escalables</p>
                     <div class="skill-tags">
                         <span>Node.js</span><span>NestJS</span><span>Express</span>
                         <span>Python</span><span>Django</span><span>Flask</span>
@@ -435,7 +461,7 @@
                 <div class="skill-card">
                     <div class="icon">🎨</div>
                     <h3>Frontend</h3>
-                    <p>Interfaces modernas y experiencias de usuario optimizadas</p>
+                    <p data-i18n="skills.frontend">Interfaces modernas y experiencias de usuario optimizadas</p>
                     <div class="skill-tags">
                         <span>React</span><span>Next.js</span><span>Vue.js 3</span>
                         <span>Qwik</span><span>Ionic</span><span>Tailwind</span>
@@ -444,7 +470,7 @@
                 <div class="skill-card">
                     <div class="icon">☁️</div>
                     <h3>Cloud & DevOps</h3>
-                    <p>Infraestructura, CI/CD y despliegue automatizado</p>
+                    <p data-i18n="skills.cloud">Infraestructura, CI/CD y despliegue automatizado</p>
                     <div class="skill-tags">
                         <span>AWS</span><span>Azure</span><span>GCP</span>
                         <span>Docker</span><span>Kubernetes</span><span>CloudFormation</span>
@@ -453,8 +479,8 @@
                 </div>
                 <div class="skill-card">
                     <div class="icon">🗄️</div>
-                    <h3>Bases de Datos</h3>
-                    <p>Diseño, optimización y administración de datos</p>
+                    <h3 data-i18n="skills.db_title">Bases de Datos</h3>
+                    <p data-i18n="skills.db">Diseño, optimización y administración de datos</p>
                     <div class="skill-tags">
                         <span>PostgreSQL</span><span>MySQL</span><span>Oracle</span>
                         <span>DynamoDB</span><span>PL/SQL</span>
@@ -462,8 +488,8 @@
                 </div>
                 <div class="skill-card">
                     <div class="icon">🏗️</div>
-                    <h3>Arquitectura</h3>
-                    <p>Patrones y principios para código mantenible</p>
+                    <h3 data-i18n="skills.arch_title">Arquitectura</h3>
+                    <p data-i18n="skills.arch">Patrones y principios para código mantenible</p>
                     <div class="skill-tags">
                         <span>Hexagonal</span><span>DDD</span><span>SOLID</span>
                         <span>Microservicios</span><span>Event-Driven</span>
@@ -472,8 +498,8 @@
                 </div>
                 <div class="skill-card">
                     <div class="icon">🔧</div>
-                    <h3>Metodologías & Tools</h3>
-                    <p>Procesos ágiles y herramientas de colaboración</p>
+                    <h3 data-i18n="skills.methods_title">Metodologías & Tools</h3>
+                    <p data-i18n="skills.methods">Procesos ágiles y herramientas de colaboración</p>
                     <div class="skill-tags">
                         <span>Scrum</span><span>XP</span><span>Jira</span>
                         <span>Git</span><span>GitFlow</span><span>Jest</span>
@@ -488,8 +514,8 @@
     <section id="projects">
         <div class="container">
             <div class="section-header fade-up">
-                <span class="overline">Portafolio</span>
-                <h2>Proyectos Destacados</h2>
+                <span class="overline" data-i18n="projects.overline">Portafolio</span>
+                <h2 data-i18n="projects.title">Proyectos Destacados</h2>
             </div>
             <div class="projects-grid fade-up">
 
@@ -497,11 +523,11 @@
                 <div class="project-card project-featured">
                     <div class="thumb">
                         <img src="assets/img/geovisor-1.png" alt="GeoVisor — Análisis Geoespacial Territorial">
-                        <span class="badge">Proyecto destacado</span>
+                        <span class="badge" data-i18n="projects.gv_badge">Proyecto destacado</span>
                     </div>
                     <div class="body">
-                        <h3>GeoVisor — Análisis Geoespacial Territorial</h3>
-                        <p>Plataforma web enterprise para análisis geoespacial territorial con validación ambiental automatizada, generación de reportes PDF interactivos e integración de IA (Google Gemini) para evaluación SEIA. Soporta GeoJSON, KML, KMZ y coordenadas UTM. Incluye análisis de intersección preciso con GeoPandas/Shapely, capas ambientales SNASPE, humedales urbanos y zonas protegidas.</p>
+                        <h3 data-i18n="projects.gv_title">GeoVisor — Análisis Geoespacial Territorial</h3>
+                        <p data-i18n="projects.gv_desc">Plataforma web enterprise para análisis geoespacial territorial con validación ambiental automatizada, generación de reportes PDF interactivos e integración de IA (Google Gemini) para evaluación SEIA. Soporta GeoJSON, KML, KMZ y coordenadas UTM. Incluye análisis de intersección preciso con GeoPandas/Shapely, capas ambientales SNASPE, humedales urbanos y zonas protegidas.</p>
                         <div class="tech-stack">
                             <span>React 19</span><span>TypeScript</span><span>FastAPI</span>
                             <span>Python</span><span>MapLibre GL</span><span>GeoPandas</span>
@@ -514,11 +540,11 @@
                 <div class="project-card">
                     <div class="thumb">
                         <img src="assets/img/geovisor-2.png" alt="Sistema Municipalidad de Temuco" style="object-position: top;">
-                        <span class="badge">Gobierno</span>
+                        <span class="badge" data-i18n="projects.gov_badge">Gobierno</span>
                     </div>
                     <div class="body">
-                        <h3>Sistema de Videoconferencia — Municipalidad de Temuco</h3>
-                        <p>Plataforma de programación de videoconferencias para la Municipalidad de Temuco, con paneles administrativos y de ciudadanos. Integración con Transbank WebPay para pagos y plataforma Zoom. Incluye diagramas BPMN del proceso.</p>
+                        <h3 data-i18n="projects.temuco_title">Sistema de Videoconferencia — Municipalidad de Temuco</h3>
+                        <p data-i18n="projects.temuco_desc">Plataforma de programación de videoconferencias para la Municipalidad de Temuco, con paneles administrativos y de ciudadanos. Integración con Transbank WebPay para pagos y plataforma Zoom. Incluye diagramas BPMN del proceso.</p>
                         <div class="tech-stack">
                             <span>Django</span><span>Python</span><span>PostgreSQL</span>
                             <span>Docker</span><span>Transbank</span><span>Zoom API</span>
@@ -530,11 +556,11 @@
                 <div class="project-card">
                     <div class="thumb">
                         <img src="assets/img/pichilemu-preview.jpeg" alt="Sistema Seguridad Pichilemu">
-                        <span class="badge">Gobierno</span>
+                        <span class="badge" data-i18n="projects.gov_badge2">Gobierno</span>
                     </div>
                     <div class="body">
-                        <h3>Sistema de Seguridad — Municipalidad de Pichilemu</h3>
-                        <p>Plataforma enfocada en mejorar la seguridad ciudadana de Pichilemu. Desplegado en servidor VPS Linux. Diseño de solución con diagramas BPMN y flujos operacionales documentados.</p>
+                        <h3 data-i18n="projects.pichi_title">Sistema de Seguridad — Municipalidad de Pichilemu</h3>
+                        <p data-i18n="projects.pichi_desc">Plataforma enfocada en mejorar la seguridad ciudadana de Pichilemu. Desplegado en servidor VPS Linux. Diseño de solución con diagramas BPMN y flujos operacionales documentados.</p>
                         <div class="tech-stack">
                             <span>Django</span><span>REST Framework</span><span>PostgreSQL</span>
                             <span>Python</span><span>Linux VPS</span><span>Nginx</span>
@@ -546,13 +572,13 @@
                 <div class="project-card">
                     <div class="thumb">
                         <img src="assets/img/geovisor-3.png" alt="Proyecto ChileCompra">
-                        <span class="badge">Gobierno</span>
+                        <span class="badge" data-i18n="projects.gov_badge3">Gobierno</span>
                     </div>
                     <div class="body">
-                        <h3>Proyecto ChileCompra</h3>
-                        <p>Desarrollo de especificaciones técnicas y solución de software para la plataforma de compras públicas ChileCompra. Documentación completa del proyecto con requerimientos y análisis técnico.</p>
+                        <h3 data-i18n="projects.chile_title">Proyecto ChileCompra</h3>
+                        <p data-i18n="projects.chile_desc">Desarrollo de especificaciones técnicas y solución de software para la plataforma de compras públicas ChileCompra. Documentación completa del proyecto con requerimientos y análisis técnico.</p>
                         <div class="tech-stack">
-                            <span>Análisis</span><span>Especificaciones</span><span>Documentación</span>
+                            <span data-i18n="projects.chile_t1">Análisis</span><span data-i18n="projects.chile_t2">Especificaciones</span><span data-i18n="projects.chile_t3">Documentación</span>
                         </div>
                     </div>
                 </div>
@@ -565,7 +591,7 @@
                     </div>
                     <div class="body">
                         <h3>SpiritBox App</h3>
-                        <p>Aplicación móvil multiplataforma desarrollada con Ionic Framework y ReactJS. Diseño de interfaz intuitivo para experiencia de usuario optimizada en dispositivos iOS y Android.</p>
+                        <p data-i18n="projects.spirit_desc">Aplicación móvil multiplataforma desarrollada con Ionic Framework y ReactJS. Diseño de interfaz intuitivo para experiencia de usuario optimizada en dispositivos iOS y Android.</p>
                         <div class="tech-stack">
                             <span>Ionic</span><span>React</span><span>TypeScript</span>
                             <span>Mobile</span><span>Cross-platform</span>
@@ -580,8 +606,8 @@
                         <span class="badge">IA / Chatbot</span>
                     </div>
                     <div class="body">
-                        <h3>ValebotIA — Chatbot Inteligente</h3>
-                        <p>Frontend de chatbot con inteligencia artificial basado en LangChain y LangGraph. Interfaz moderna con Next.js 14, integración con Supabase y componentes Radix UI.</p>
+                        <h3 data-i18n="projects.vale_title">ValebotIA — Chatbot Inteligente</h3>
+                        <p data-i18n="projects.vale_desc">Frontend de chatbot con inteligencia artificial basado en LangChain y LangGraph. Interfaz moderna con Next.js 14, integración con Supabase y componentes Radix UI.</p>
                         <div class="tech-stack">
                             <span>Next.js 14</span><span>React 19</span><span>LangChain</span>
                             <span>Supabase</span><span>TypeScript</span><span>Tailwind</span>
@@ -597,51 +623,51 @@
     <section id="experience">
         <div class="container">
             <div class="section-header fade-up">
-                <span class="overline">Trayectoria</span>
-                <h2>Experiencia Laboral</h2>
+                <span class="overline" data-i18n="exp.overline">Trayectoria</span>
+                <h2 data-i18n="exp.title">Experiencia Laboral</h2>
             </div>
             <div class="timeline fade-up">
 
                 <div class="timeline-item">
-                    <span class="date">Mayo 2025 — Actualidad</span>
+                    <span class="date" data-i18n="exp.date1">Mayo 2025 — Actualidad</span>
                     <h3>AWS Developer</h3>
                     <div class="company">BC Tecnología — AFP Cuprum</div>
-                    <p>Implementación de soluciones escalables en la nube para la reforma de pensiones. Stack: AWS Glue, CDK, S3, CloudFront, Lambda, API Gateway, Python.</p>
+                    <p data-i18n="exp.desc1">Implementación de soluciones escalables en la nube para la reforma de pensiones. Stack: AWS Glue, CDK, S3, CloudFront, Lambda, API Gateway, Python.</p>
                 </div>
 
                 <div class="timeline-item">
-                    <span class="date">Marzo 2024 — Mayo 2025</span>
+                    <span class="date" data-i18n="exp.date2">Marzo 2024 — Mayo 2025</span>
                     <h3>AWS Developer</h3>
                     <div class="company">TicMoAI</div>
-                    <p>Implementación de soluciones en AWS y Azure, monitoreo de infraestructura cloud híbrida. Stack: AWS, Azure DevOps, CloudFormation, S3, CloudFront, Python, TypeScript, GCP.</p>
+                    <p data-i18n="exp.desc2">Implementación de soluciones en AWS y Azure, monitoreo de infraestructura cloud híbrida. Stack: AWS, Azure DevOps, CloudFormation, S3, CloudFront, Python, TypeScript, GCP.</p>
                 </div>
 
                 <div class="timeline-item">
-                    <span class="date">Julio 2023 — Enero 2024</span>
+                    <span class="date" data-i18n="exp.date3">Julio 2023 — Enero 2024</span>
                     <h3>Fullstack Developer</h3>
                     <div class="company">MEETCARD SPA</div>
-                    <p>Desarrollo, mantenimiento y refactorización de código. Implementación de soluciones en AWS y flujos de trabajo ágiles. Stack: NestJS, TypeScript, VueJS 3, QuasarJS, AWS ECS.</p>
+                    <p data-i18n="exp.desc3">Desarrollo, mantenimiento y refactorización de código. Implementación de soluciones en AWS y flujos de trabajo ágiles. Stack: NestJS, TypeScript, VueJS 3, QuasarJS, AWS ECS.</p>
                 </div>
 
                 <div class="timeline-item">
-                    <span class="date">Marzo 2023 — Julio 2023</span>
+                    <span class="date" data-i18n="exp.date4">Marzo 2023 — Julio 2023</span>
                     <h3>Fullstack Developer</h3>
                     <div class="company">Simbiótica SPA</div>
-                    <p>Desarrollo backend con Node.js y arquitectura hexagonal con principios SOLID. Frontend con NextJS. Infraestructura con AWS Lambda y CloudFormation. Stack: NestJS, TypeScript, ReactJS, NextJS, AWS.</p>
+                    <p data-i18n="exp.desc4">Desarrollo backend con Node.js y arquitectura hexagonal con principios SOLID. Frontend con NextJS. Infraestructura con AWS Lambda y CloudFormation. Stack: NestJS, TypeScript, ReactJS, NextJS, AWS.</p>
                 </div>
 
                 <div class="timeline-item">
-                    <span class="date">Septiembre 2022 — Febrero 2023</span>
-                    <h3>Analista de Desarrollo</h3>
+                    <span class="date" data-i18n="exp.date5">Septiembre 2022 — Febrero 2023</span>
+                    <h3 data-i18n="exp.role5">Analista de Desarrollo</h3>
                     <div class="company">GERET</div>
-                    <p>Automatización de procesos e informes en servidor Linux CentOS con Python. Consultas SQL y PL/SQL Oracle. Stack: Python, Django REST, ReactJS, PostgreSQL.</p>
+                    <p data-i18n="exp.desc5">Automatización de procesos e informes en servidor Linux CentOS con Python. Consultas SQL y PL/SQL Oracle. Stack: Python, Django REST, ReactJS, PostgreSQL.</p>
                 </div>
 
                 <div class="timeline-item">
-                    <span class="date">Marzo 2021 — Abril 2022</span>
-                    <h3>Full Stack Developer (Proyectos)</h3>
+                    <span class="date" data-i18n="exp.date6">Marzo 2021 — Abril 2022</span>
+                    <h3 data-i18n="exp.role6">Full Stack Developer (Proyectos)</h3>
                     <div class="company">CRUD SPA</div>
-                    <p>Proyectos para Municipalidad de Temuco (videoconferencias) y Municipalidad de Pichilemu (seguridad ciudadana). Stack: Django, PostgreSQL, Docker, Flask, Node ExpressJS.</p>
+                    <p data-i18n="exp.desc6">Proyectos para Municipalidad de Temuco (videoconferencias) y Municipalidad de Pichilemu (seguridad ciudadana). Stack: Django, PostgreSQL, Docker, Flask, Node ExpressJS.</p>
                 </div>
 
             </div>
@@ -652,8 +678,8 @@
     <section id="contact">
         <div class="container">
             <div class="section-header fade-up">
-                <span class="overline">Contacto</span>
-                <h2>Hablemos</h2>
+                <span class="overline" data-i18n="contact.overline">Contacto</span>
+                <h2 data-i18n="contact.title">Hablemos</h2>
             </div>
             <div class="contact-grid fade-up">
                 <a href="mailto:ricardo.ignacio18@hotmail.com" class="contact-card">
@@ -678,36 +704,175 @@
     <!-- ═══════ FOOTER ═══════ -->
     <footer>
         <div class="container">
-            <p>&copy; 2026 Ricardo Poblete. Todos los derechos reservados.</p>
+            <p data-i18n="footer">&copy; 2026 Ricardo Poblete. Todos los derechos reservados.</p>
         </div>
     </footer>
 
     <!-- ═══════ SCRIPTS ═══════ -->
     <script>
-        // Intersection Observer for fade-up animations
+        // ── Intersection Observer ──
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
+                if (entry.isIntersecting) entry.target.classList.add('visible');
             });
         }, { threshold: 0.1 });
-
         document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
-        // Close mobile menu on link click
+        // ── Mobile menu ──
         document.querySelectorAll('nav ul a').forEach(link => {
-            link.addEventListener('click', () => {
-                document.querySelector('nav ul').classList.remove('active');
-            });
+            link.addEventListener('click', () => document.querySelector('nav ul').classList.remove('active'));
         });
 
-        // Navbar shadow on scroll
+        // ── Navbar shadow ──
         window.addEventListener('scroll', () => {
-            const nav = document.querySelector('nav');
-            nav.style.boxShadow = window.scrollY > 10
-                ? '0 4px 30px rgba(0,0,0,.3)'
-                : 'none';
+            document.querySelector('nav').style.boxShadow = window.scrollY > 10
+                ? '0 4px 30px rgba(0,0,0,.3)' : 'none';
+        });
+
+        // ── i18n System ──
+        const translations = {
+            es: {
+                'nav.about': 'Sobre mí', 'nav.skills': 'Skills', 'nav.projects': 'Proyectos',
+                'nav.experience': 'Experiencia', 'nav.contact': 'Contacto',
+                'hero.tag': 'Disponible para nuevos proyectos',
+                'hero.desc': 'Desarrollador de Software Fullstack con más de 4 años de experiencia en arquitecturas cloud, DevOps y desarrollo de soluciones escalables.',
+                'hero.cta1': 'Ver proyectos', 'hero.cta2': 'Contacto',
+                'hero.stat1': 'Años experiencia', 'hero.stat2': 'Proyectos',
+                'about.overline': 'Sobre mí', 'about.title': 'Quién soy',
+                'about.p1': 'Soy Ricardo Poblete, desarrollador de software chileno, graduado de Duoc UC como Analista Programador Computacional. Con más de 4 años de experiencia, me especializo en desarrollo Fullstack y soluciones en la nube.',
+                'about.p2': 'Más allá de lo técnico, soy un apasionado de los marcos de trabajo ágiles (Scrum, XP, DevOps) que optimizan la entrega de valor. Mi enfoque está en la arquitectura limpia, código mantenible y la mejora continua.',
+                'about.p3': 'Tengo una fuerte dedicación al área de DevOps e infraestructura cloud, donde concentro gran parte de mi desarrollo profesional, con experiencia práctica en AWS, Azure y GCP.',
+                'about.info1': '<strong>Ubicación</strong> Chile',
+                'about.info2': '<strong>Experiencia</strong> 4+ años',
+                'about.info3': '<strong>Enfoque</strong> Fullstack & Cloud',
+                'about.info4': '<strong>Inglés</strong> Nivel B2',
+                'about.info5': '<strong>Educación</strong> Duoc UC — Analista Programador',
+                'about.info6': '<strong>Certificación</strong> AWS Cloud Practitioner',
+                'skills.overline': 'Habilidades', 'skills.title': 'Stack Tecnológico',
+                'skills.backend': 'Desarrollo de APIs robustas y servicios escalables',
+                'skills.frontend': 'Interfaces modernas y experiencias de usuario optimizadas',
+                'skills.cloud': 'Infraestructura, CI/CD y despliegue automatizado',
+                'skills.db_title': 'Bases de Datos', 'skills.db': 'Diseño, optimización y administración de datos',
+                'skills.arch_title': 'Arquitectura', 'skills.arch': 'Patrones y principios para código mantenible',
+                'skills.methods_title': 'Metodologías & Tools', 'skills.methods': 'Procesos ágiles y herramientas de colaboración',
+                'projects.overline': 'Portafolio', 'projects.title': 'Proyectos Destacados',
+                'projects.gv_badge': 'Proyecto destacado',
+                'projects.gv_title': 'GeoVisor — Análisis Geoespacial Territorial',
+                'projects.gv_desc': 'Plataforma web enterprise para análisis geoespacial territorial con validación ambiental automatizada, generación de reportes PDF interactivos e integración de IA (Google Gemini) para evaluación SEIA. Soporta GeoJSON, KML, KMZ y coordenadas UTM. Incluye análisis de intersección preciso con GeoPandas/Shapely, capas ambientales SNASPE, humedales urbanos y zonas protegidas.',
+                'projects.gov_badge': 'Gobierno', 'projects.gov_badge2': 'Gobierno', 'projects.gov_badge3': 'Gobierno',
+                'projects.temuco_title': 'Sistema de Videoconferencia — Municipalidad de Temuco',
+                'projects.temuco_desc': 'Plataforma de programación de videoconferencias para la Municipalidad de Temuco, con paneles administrativos y de ciudadanos. Integración con Transbank WebPay para pagos y plataforma Zoom. Incluye diagramas BPMN del proceso.',
+                'projects.pichi_title': 'Sistema de Seguridad — Municipalidad de Pichilemu',
+                'projects.pichi_desc': 'Plataforma enfocada en mejorar la seguridad ciudadana de Pichilemu. Desplegado en servidor VPS Linux. Diseño de solución con diagramas BPMN y flujos operacionales documentados.',
+                'projects.chile_title': 'Proyecto ChileCompra',
+                'projects.chile_desc': 'Desarrollo de especificaciones técnicas y solución de software para la plataforma de compras públicas ChileCompra. Documentación completa del proyecto con requerimientos y análisis técnico.',
+                'projects.chile_t1': 'Análisis', 'projects.chile_t2': 'Especificaciones', 'projects.chile_t3': 'Documentación',
+                'projects.spirit_desc': 'Aplicación móvil multiplataforma desarrollada con Ionic Framework y ReactJS. Diseño de interfaz intuitivo para experiencia de usuario optimizada en dispositivos iOS y Android.',
+                'projects.vale_title': 'ValebotIA — Chatbot Inteligente',
+                'projects.vale_desc': 'Frontend de chatbot con inteligencia artificial basado en LangChain y LangGraph. Interfaz moderna con Next.js 14, integración con Supabase y componentes Radix UI.',
+                'exp.overline': 'Trayectoria', 'exp.title': 'Experiencia Laboral',
+                'exp.date1': 'Mayo 2025 — Actualidad',
+                'exp.desc1': 'Implementación de soluciones escalables en la nube para la reforma de pensiones. Stack: AWS Glue, CDK, S3, CloudFront, Lambda, API Gateway, Python.',
+                'exp.date2': 'Marzo 2024 — Mayo 2025',
+                'exp.desc2': 'Implementación de soluciones en AWS y Azure, monitoreo de infraestructura cloud híbrida. Stack: AWS, Azure DevOps, CloudFormation, S3, CloudFront, Python, TypeScript, GCP.',
+                'exp.date3': 'Julio 2023 — Enero 2024',
+                'exp.desc3': 'Desarrollo, mantenimiento y refactorización de código. Implementación de soluciones en AWS y flujos de trabajo ágiles. Stack: NestJS, TypeScript, VueJS 3, QuasarJS, AWS ECS.',
+                'exp.date4': 'Marzo 2023 — Julio 2023',
+                'exp.desc4': 'Desarrollo backend con Node.js y arquitectura hexagonal con principios SOLID. Frontend con NextJS. Infraestructura con AWS Lambda y CloudFormation. Stack: NestJS, TypeScript, ReactJS, NextJS, AWS.',
+                'exp.date5': 'Septiembre 2022 — Febrero 2023',
+                'exp.role5': 'Analista de Desarrollo',
+                'exp.desc5': 'Automatización de procesos e informes en servidor Linux CentOS con Python. Consultas SQL y PL/SQL Oracle. Stack: Python, Django REST, ReactJS, PostgreSQL.',
+                'exp.date6': 'Marzo 2021 — Abril 2022',
+                'exp.role6': 'Full Stack Developer (Proyectos)',
+                'exp.desc6': 'Proyectos para Municipalidad de Temuco (videoconferencias) y Municipalidad de Pichilemu (seguridad ciudadana). Stack: Django, PostgreSQL, Docker, Flask, Node ExpressJS.',
+                'contact.overline': 'Contacto', 'contact.title': 'Hablemos',
+                'footer': '&copy; 2026 Ricardo Poblete. Todos los derechos reservados.',
+                '_pageTitle': 'Ricardo Poblete — Desarrollador de Software'
+            },
+            en: {
+                'nav.about': 'About', 'nav.skills': 'Skills', 'nav.projects': 'Projects',
+                'nav.experience': 'Experience', 'nav.contact': 'Contact',
+                'hero.tag': 'Available for new projects',
+                'hero.desc': 'Fullstack Software Developer with 4+ years of experience in cloud architectures, DevOps and scalable solution development.',
+                'hero.cta1': 'View projects', 'hero.cta2': 'Contact',
+                'hero.stat1': 'Years experience', 'hero.stat2': 'Projects',
+                'about.overline': 'About me', 'about.title': 'Who I am',
+                'about.p1': "I'm Ricardo Poblete, a Chilean software developer graduated from Duoc UC as a Computer Programming Analyst. With 4+ years of experience, I specialize in Fullstack development and cloud solutions.",
+                'about.p2': 'Beyond the technical side, I\'m passionate about agile frameworks (Scrum, XP, DevOps) that optimize value delivery. My focus is on clean architecture, maintainable code and continuous improvement.',
+                'about.p3': 'I have a strong dedication to DevOps and cloud infrastructure, where I focus most of my professional development, with hands-on experience in AWS, Azure and GCP.',
+                'about.info1': '<strong>Location</strong> Chile',
+                'about.info2': '<strong>Experience</strong> 4+ years',
+                'about.info3': '<strong>Focus</strong> Fullstack & Cloud',
+                'about.info4': '<strong>English</strong> B2 Level',
+                'about.info5': '<strong>Education</strong> Duoc UC — Programming Analyst',
+                'about.info6': '<strong>Certification</strong> AWS Cloud Practitioner',
+                'skills.overline': 'Skills', 'skills.title': 'Tech Stack',
+                'skills.backend': 'Building robust APIs and scalable services',
+                'skills.frontend': 'Modern interfaces and optimized user experiences',
+                'skills.cloud': 'Infrastructure, CI/CD and automated deployments',
+                'skills.db_title': 'Databases', 'skills.db': 'Design, optimization and data management',
+                'skills.arch_title': 'Architecture', 'skills.arch': 'Patterns and principles for maintainable code',
+                'skills.methods_title': 'Methodologies & Tools', 'skills.methods': 'Agile processes and collaboration tools',
+                'projects.overline': 'Portfolio', 'projects.title': 'Featured Projects',
+                'projects.gv_badge': 'Featured project',
+                'projects.gv_title': 'GeoVisor — Territorial Geospatial Analysis',
+                'projects.gv_desc': 'Enterprise web platform for territorial geospatial analysis with automated environmental validation, interactive PDF report generation and AI integration (Google Gemini) for SEIA evaluation. Supports GeoJSON, KML, KMZ and UTM coordinates. Includes precise intersection analysis with GeoPandas/Shapely, SNASPE environmental layers, urban wetlands and protected areas.',
+                'projects.gov_badge': 'Government', 'projects.gov_badge2': 'Government', 'projects.gov_badge3': 'Government',
+                'projects.temuco_title': 'Video Conference System — Temuco Municipality',
+                'projects.temuco_desc': 'Video conference scheduling platform for Temuco Municipality, with administrative and citizen panels. Integration with Transbank WebPay for payments and Zoom platform. Includes BPMN process diagrams.',
+                'projects.pichi_title': 'Security System — Pichilemu Municipality',
+                'projects.pichi_desc': 'Platform focused on improving citizen safety in Pichilemu. Deployed on Linux VPS server. Solution design with BPMN diagrams and documented operational flows.',
+                'projects.chile_title': 'ChileCompra Project',
+                'projects.chile_desc': 'Technical specifications development and software solution for the ChileCompra public procurement platform. Complete project documentation with requirements and technical analysis.',
+                'projects.chile_t1': 'Analysis', 'projects.chile_t2': 'Specifications', 'projects.chile_t3': 'Documentation',
+                'projects.spirit_desc': 'Cross-platform mobile application built with Ionic Framework and ReactJS. Intuitive interface design for optimized user experience on iOS and Android devices.',
+                'projects.vale_title': 'ValebotIA — Intelligent Chatbot',
+                'projects.vale_desc': 'AI-powered chatbot frontend built with LangChain and LangGraph. Modern interface with Next.js 14, Supabase integration and Radix UI components.',
+                'exp.overline': 'Career', 'exp.title': 'Work Experience',
+                'exp.date1': 'May 2025 — Present',
+                'exp.desc1': 'Implementing scalable cloud solutions for pension reform. Stack: AWS Glue, CDK, S3, CloudFront, Lambda, API Gateway, Python.',
+                'exp.date2': 'March 2024 — May 2025',
+                'exp.desc2': 'Implementing solutions on AWS and Azure, hybrid cloud infrastructure monitoring. Stack: AWS, Azure DevOps, CloudFormation, S3, CloudFront, Python, TypeScript, GCP.',
+                'exp.date3': 'July 2023 — January 2024',
+                'exp.desc3': 'Development, maintenance and code refactoring. Implementing AWS solutions and agile workflows. Stack: NestJS, TypeScript, VueJS 3, QuasarJS, AWS ECS.',
+                'exp.date4': 'March 2023 — July 2023',
+                'exp.desc4': 'Backend development with Node.js and hexagonal architecture with SOLID principles. Frontend with NextJS. Infrastructure with AWS Lambda and CloudFormation. Stack: NestJS, TypeScript, ReactJS, NextJS, AWS.',
+                'exp.date5': 'September 2022 — February 2023',
+                'exp.role5': 'Development Analyst',
+                'exp.desc5': 'Process automation and reporting on Linux CentOS server with Python. SQL and PL/SQL Oracle queries. Stack: Python, Django REST, ReactJS, PostgreSQL.',
+                'exp.date6': 'March 2021 — April 2022',
+                'exp.role6': 'Full Stack Developer (Projects)',
+                'exp.desc6': 'Projects for Temuco Municipality (video conferencing) and Pichilemu Municipality (citizen safety). Stack: Django, PostgreSQL, Docker, Flask, Node ExpressJS.',
+                'contact.overline': 'Contact', 'contact.title': "Let's Talk",
+                'footer': '&copy; 2026 Ricardo Poblete. All rights reserved.',
+                '_pageTitle': 'Ricardo Poblete — Software Developer'
+            }
+        };
+
+        let currentLang = 'es';
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            document.documentElement.lang = lang;
+            document.getElementById('pageTitle').textContent = translations[lang]['_pageTitle'];
+
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang][key]) el.textContent = translations[lang][key];
+            });
+
+            document.querySelectorAll('[data-i18n-html]').forEach(el => {
+                const key = el.getAttribute('data-i18n-html');
+                if (translations[lang][key]) el.innerHTML = translations[lang][key];
+            });
+
+            document.querySelectorAll('#langToggle span').forEach(s => {
+                s.classList.toggle('active', s.getAttribute('data-lang') === lang);
+            });
+        }
+
+        document.getElementById('langToggle').addEventListener('click', () => {
+            setLanguage(currentLang === 'es' ? 'en' : 'es');
         });
     </script>
 </body>
