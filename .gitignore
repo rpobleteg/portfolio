@@ -1,0 +1,11 @@
+# Project documentation folders (not needed for the website)
+Proyecto ChileCompra-20260309T022158Z-1-001/
+Proyecto Pichilemu -20260309T022155Z-1-001/
+Proyecto Temuco-20260309T022156Z-1-001/
+SpiritBoxApp - Ionic Framework y ReactJS-20260309T022200Z-1-001/
+
+# CV PDF
+*.pdf
+
+# Root duplicate photo
+yo.jpeg

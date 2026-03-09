@@ -750,9 +750,9 @@
         const canvas = document.getElementById('particleCanvas');
         const ctx = canvas.getContext('2d');
         let w, h, particles, mouse = { x: -9999, y: -9999 };
-        const PARTICLE_COUNT = 80;
-        const CONNECT_DIST = 140;
-        const MOUSE_RADIUS = 180;
+        const PARTICLE_COUNT = 140;
+        const CONNECT_DIST = 180;
+        const MOUSE_RADIUS = 250;
 
         function resize() {
             w = canvas.width = window.innerWidth;
@@ -765,9 +765,9 @@
             return {
                 x: Math.random() * w,
                 y: Math.random() * h,
-                vx: (Math.random() - 0.5) * 0.4,
-                vy: (Math.random() - 0.5) * 0.4,
-                r: Math.random() * 1.5 + 0.5
+                vx: (Math.random() - 0.5) * 0.6,
+                vy: (Math.random() - 0.5) * 0.6,
+                r: Math.random() * 2.5 + 1
             };
         }
 
@@ -812,7 +812,7 @@
                 if (p.y > h + 10) p.y = -10;
 
                 // Draw particle
-                const glowAlpha = distM < MOUSE_RADIUS ? 0.9 : 0.35;
+                const glowAlpha = distM < MOUSE_RADIUS ? 1 : 0.7;
                 ctx.beginPath();
                 ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
                 ctx.fillStyle = 'rgba(245,158,11,' + glowAlpha + ')';
@@ -825,17 +825,17 @@
                     const dy = p.y - q.y;
                     const dist = Math.sqrt(dx * dx + dy * dy);
                     if (dist < CONNECT_DIST) {
-                        const alpha = (1 - dist / CONNECT_DIST) * 0.15;
+                        const alpha = (1 - dist / CONNECT_DIST) * 0.35;
                         // Brighter near mouse
                         const midX = (p.x + q.x) / 2;
                         const midY = (p.y + q.y) / 2;
                         const dMid = Math.sqrt((midX - mouse.x) ** 2 + (midY - mouse.y) ** 2);
-                        const boost = dMid < MOUSE_RADIUS ? (1 - dMid / MOUSE_RADIUS) * 0.4 : 0;
+                        const boost = dMid < MOUSE_RADIUS ? (1 - dMid / MOUSE_RADIUS) * 0.6 : 0;
                         ctx.beginPath();
                         ctx.moveTo(p.x, p.y);
                         ctx.lineTo(q.x, q.y);
                         ctx.strokeStyle = 'rgba(245,158,11,' + (alpha + boost) + ')';
-                        ctx.lineWidth = 0.6;
+                        ctx.lineWidth = 0.9;
                         ctx.stroke();
                     }
                 }
