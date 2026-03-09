@@ -168,6 +168,23 @@
             min-width: 120px; color: var(--text-muted); font-weight: 500;
         }
 
+        /* Value proposition list */
+        #about .value-list {
+            list-style: none; margin-top: 16px;
+        }
+        #about .value-list li {
+            display: flex; align-items: flex-start; gap: 12px;
+            padding: 8px 0; font-size: .9rem; color: var(--text-muted);
+            line-height: 1.6;
+        }
+        #about .value-list li .check {
+            color: var(--accent); font-weight: 700; flex-shrink: 0;
+            margin-top: 2px; font-size: .95rem;
+        }
+        #about .about-text .value-intro {
+            color: var(--text); font-weight: 500; margin-top: 8px;
+        }
+
         /* ───────── SKILLS ───────── */
         .skills-grid {
             display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -391,7 +408,7 @@
                 <div class="hero-text">
                     <span class="tag" data-i18n="hero.tag">Disponible para nuevos proyectos</span>
                     <h1>Ricardo <span>Poblete</span></h1>
-                    <p data-i18n="hero.desc">Desarrollador de Software Fullstack con más de 4 años de experiencia en arquitecturas cloud, DevOps y desarrollo de soluciones escalables.</p>
+                    <p data-i18n="hero.desc">Hola, soy Ricardo — desarrollador Fullstack y especialista Cloud con más de 4 años transformando ideas en soluciones digitales escalables. Certificado AWS, apasionado por DevOps y la arquitectura limpia.</p>
                     <div class="hero-actions">
                         <a href="#projects" class="btn btn-primary">
                             <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
@@ -433,9 +450,17 @@
             </div>
             <div class="about-grid fade-up">
                 <div class="about-text">
-                    <p data-i18n="about.p1">Soy Ricardo Poblete, desarrollador de software chileno, graduado de Duoc UC como Analista Programador Computacional. Con más de 4 años de experiencia, me especializo en desarrollo Fullstack y soluciones en la nube.</p>
-                    <p data-i18n="about.p2">Más allá de lo técnico, soy un apasionado de los marcos de trabajo ágiles (Scrum, XP, DevOps) que optimizan la entrega de valor. Mi enfoque está en la arquitectura limpia, código mantenible y la mejora continua.</p>
-                    <p data-i18n="about.p3">Tengo una fuerte dedicación al área de DevOps e infraestructura cloud, donde concentro gran parte de mi desarrollo profesional, con experiencia práctica en AWS, Azure y GCP.</p>
+                    <p data-i18n="about.p1">¡Hola! Soy Ricardo Poblete, desarrollador de software chileno graduado de Duoc UC como Analista Programador Computacional, y un apasionado de la tecnología cloud y la arquitectura de software limpia. Cuento con más de 4 años de experiencia profesional en empresas de tecnología, donde he participado en proyectos para instituciones gubernamentales, el sector financiero y startups tecnológicas.</p>
+                    <p data-i18n="about.p2">Me especializo en desarrollo Fullstack y soluciones en la nube, con dominio práctico en AWS, Azure y GCP. Disfruto trabajando con marcos ágiles (Scrum, XP, DevOps) que optimizan cada entrega, y mi filosofía es escribir código limpio, mantenible y orientado a resultados. Actualmente me desempeño como AWS Developer en BC Tecnología para AFP Cuprum, implementando soluciones cloud escalables para la reforma de pensiones.</p>
+                    <p class="value-intro" data-i18n="about.p3">Si estás buscando un desarrollador comprometido para tu próximo proyecto, esto es lo que te garantizo:</p>
+                    <ul class="value-list">
+                        <li><span class="check">✓</span> <span data-i18n="about.v1">Soluciones personalizadas y escalables, desarrolladas a medida según tus necesidades de negocio.</span></li>
+                        <li><span class="check">✓</span> <span data-i18n="about.v2">Código limpio con arquitectura sólida — Hexagonal, DDD, SOLID y Microservicios.</span></li>
+                        <li><span class="check">✓</span> <span data-i18n="about.v3">Despliegue profesional en la nube (AWS, Azure, GCP) con pipelines CI/CD automatizados.</span></li>
+                        <li><span class="check">✓</span> <span data-i18n="about.v4">Documentación técnica completa y transparente en cada etapa del proyecto.</span></li>
+                        <li><span class="check">✓</span> <span data-i18n="about.v5">Comunicación constante y respuesta ágil ante cualquier consulta o ajuste.</span></li>
+                        <li><span class="check">✓</span> <span data-i18n="about.v6">Metodologías ágiles para entregas iterativas, con visibilidad total del progreso.</span></li>
+                    </ul>
                 </div>
                 <div>
                     <ul class="info-list">
@@ -848,13 +873,19 @@
                 'nav.about': 'Sobre mí', 'nav.skills': 'Skills', 'nav.projects': 'Proyectos',
                 'nav.experience': 'Experiencia', 'nav.contact': 'Contacto',
                 'hero.tag': 'Disponible para nuevos proyectos',
-                'hero.desc': 'Desarrollador de Software Fullstack con más de 4 años de experiencia en arquitecturas cloud, DevOps y desarrollo de soluciones escalables.',
+                'hero.desc': 'Hola, soy Ricardo — desarrollador Fullstack y especialista Cloud con más de 4 años transformando ideas en soluciones digitales escalables. Certificado AWS, apasionado por DevOps y la arquitectura limpia.',
                 'hero.cta1': 'Ver proyectos', 'hero.cta2': 'Contacto',
                 'hero.stat1': 'Años experiencia', 'hero.stat2': 'Proyectos',
                 'about.overline': 'Sobre mí', 'about.title': 'Quién soy',
-                'about.p1': 'Soy Ricardo Poblete, desarrollador de software chileno, graduado de Duoc UC como Analista Programador Computacional. Con más de 4 años de experiencia, me especializo en desarrollo Fullstack y soluciones en la nube.',
-                'about.p2': 'Más allá de lo técnico, soy un apasionado de los marcos de trabajo ágiles (Scrum, XP, DevOps) que optimizan la entrega de valor. Mi enfoque está en la arquitectura limpia, código mantenible y la mejora continua.',
-                'about.p3': 'Tengo una fuerte dedicación al área de DevOps e infraestructura cloud, donde concentro gran parte de mi desarrollo profesional, con experiencia práctica en AWS, Azure y GCP.',
+                'about.p1': '¡Hola! Soy Ricardo Poblete, desarrollador de software chileno graduado de Duoc UC como Analista Programador Computacional, y un apasionado de la tecnología cloud y la arquitectura de software limpia. Cuento con más de 4 años de experiencia profesional en empresas de tecnología, donde he participado en proyectos para instituciones gubernamentales, el sector financiero y startups tecnológicas.',
+                'about.p2': 'Me especializo en desarrollo Fullstack y soluciones en la nube, con dominio práctico en AWS, Azure y GCP. Disfruto trabajando con marcos ágiles (Scrum, XP, DevOps) que optimizan cada entrega, y mi filosofía es escribir código limpio, mantenible y orientado a resultados. Actualmente me desempeño como AWS Developer en BC Tecnología para AFP Cuprum, implementando soluciones cloud escalables para la reforma de pensiones.',
+                'about.p3': 'Si estás buscando un desarrollador comprometido para tu próximo proyecto, esto es lo que te garantizo:',
+                'about.v1': 'Soluciones personalizadas y escalables, desarrolladas a medida según tus necesidades de negocio.',
+                'about.v2': 'Código limpio con arquitectura sólida — Hexagonal, DDD, SOLID y Microservicios.',
+                'about.v3': 'Despliegue profesional en la nube (AWS, Azure, GCP) con pipelines CI/CD automatizados.',
+                'about.v4': 'Documentación técnica completa y transparente en cada etapa del proyecto.',
+                'about.v5': 'Comunicación constante y respuesta ágil ante cualquier consulta o ajuste.',
+                'about.v6': 'Metodologías ágiles para entregas iterativas, con visibilidad total del progreso.',
                 'about.info1': '<strong>Ubicación</strong> Chile',
                 'about.info2': '<strong>Experiencia</strong> 4+ años',
                 'about.info3': '<strong>Enfoque</strong> Fullstack & Cloud',
@@ -906,13 +937,19 @@
                 'nav.about': 'About', 'nav.skills': 'Skills', 'nav.projects': 'Projects',
                 'nav.experience': 'Experience', 'nav.contact': 'Contact',
                 'hero.tag': 'Available for new projects',
-                'hero.desc': 'Fullstack Software Developer with 4+ years of experience in cloud architectures, DevOps and scalable solution development.',
+                'hero.desc': 'Hi, I\'m Ricardo — a Fullstack Developer and Cloud specialist with 4+ years turning ideas into scalable digital solutions. AWS Certified, passionate about DevOps and clean architecture.',
                 'hero.cta1': 'View projects', 'hero.cta2': 'Contact',
                 'hero.stat1': 'Years experience', 'hero.stat2': 'Projects',
                 'about.overline': 'About me', 'about.title': 'Who I am',
-                'about.p1': "I'm Ricardo Poblete, a Chilean software developer graduated from Duoc UC as a Computer Programming Analyst. With 4+ years of experience, I specialize in Fullstack development and cloud solutions.",
-                'about.p2': 'Beyond the technical side, I\'m passionate about agile frameworks (Scrum, XP, DevOps) that optimize value delivery. My focus is on clean architecture, maintainable code and continuous improvement.',
-                'about.p3': 'I have a strong dedication to DevOps and cloud infrastructure, where I focus most of my professional development, with hands-on experience in AWS, Azure and GCP.',
+                'about.p1': 'Hi there! I\'m Ricardo Poblete, a Chilean software developer graduated from Duoc UC as a Computer Programming Analyst, with a deep passion for cloud technology and clean software architecture. I bring 4+ years of professional experience working at tech companies, contributing to projects for government institutions, the financial sector and tech startups.',
+                'about.p2': 'I specialize in Fullstack development and cloud solutions, with hands-on expertise in AWS, Azure and GCP. I thrive working with agile frameworks (Scrum, XP, DevOps) that optimize every delivery, and my philosophy is writing clean, maintainable and results-driven code. I currently work as an AWS Developer at BC Tecnología for AFP Cuprum, building scalable cloud solutions for pension reform.',
+                'about.p3': 'If you\'re looking for a committed developer for your next project, here\'s what I guarantee:',
+                'about.v1': 'Custom, scalable solutions tailored to your specific business needs.',
+                'about.v2': 'Clean code with solid architecture — Hexagonal, DDD, SOLID and Microservices.',
+                'about.v3': 'Professional cloud deployment (AWS, Azure, GCP) with automated CI/CD pipelines.',
+                'about.v4': 'Complete and transparent technical documentation at every project stage.',
+                'about.v5': 'Constant communication and agile response to any questions or adjustments.',
+                'about.v6': 'Agile methodologies for iterative deliveries, with full visibility of progress.',
                 'about.info1': '<strong>Location</strong> Chile',
                 'about.info2': '<strong>Experience</strong> 4+ years',
                 'about.info3': '<strong>Focus</strong> Fullstack & Cloud',
