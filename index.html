@@ -14,8 +14,8 @@
             --bg: #0b0d11;
             --bg-card: #12151c;
             --bg-card-hover: #181c26;
-            --accent: #3b82f6;
-            --accent-muted: #2563eb;
+            --accent: #f59e0b;
+            --accent-muted: #d97706;
             --text: #e4e7ed;
             --text-muted: #8b92a5;
             --border: #1e2330;
@@ -31,7 +31,7 @@
             -webkit-font-smoothing: antialiased;
         }
         a { color: var(--accent); text-decoration: none; transition: color var(--transition); }
-        a:hover { color: #60a5fa; }
+        a:hover { color: #fbbf24; }
         img { display: block; max-width: 100%; }
 
         /* ───────── LAYOUT ───────── */
@@ -75,7 +75,7 @@
         .hero {
             min-height: 100vh; display: flex; align-items: center;
             padding-top: 64px;
-            background: radial-gradient(ellipse at 50% 0%, rgba(59,130,246,.08) 0%, transparent 60%);
+            background: radial-gradient(ellipse at 50% 0%, rgba(245,158,11,.08) 0%, transparent 60%);
         }
         .hero-inner {
             display: flex; align-items: center; gap: 64px;
@@ -83,7 +83,7 @@
         .hero-text { flex: 1; }
         .hero-text .tag {
             display: inline-block; padding: 6px 14px; border-radius: 20px;
-            background: rgba(59,130,246,.1); color: var(--accent);
+            background: rgba(245,158,11,.1); color: var(--accent);
             font-size: .8rem; font-weight: 600; letter-spacing: .04em;
             text-transform: uppercase; margin-bottom: 20px;
         }
@@ -120,7 +120,7 @@
             width: 280px; height: 280px; border-radius: 50%;
             overflow: hidden;
             border: 3px solid var(--border);
-            box-shadow: 0 0 80px rgba(59,130,246,.2);
+            box-shadow: 0 0 80px rgba(245,158,11,.2);
         }
         .hero-avatar img {
             width: 100%; height: 100%; object-fit: cover;
@@ -184,7 +184,7 @@
         }
         .skill-card .icon {
             width: 44px; height: 44px; border-radius: 10px;
-            background: rgba(59,130,246,.1);
+            background: rgba(245,158,11,.1);
             display: flex; align-items: center; justify-content: center;
             font-size: 1.2rem; margin-bottom: 16px;
         }
@@ -193,7 +193,7 @@
         .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
         .skill-tags span {
             padding: 4px 10px; border-radius: 6px; font-size: .75rem;
-            background: rgba(59,130,246,.08); color: var(--accent); font-weight: 500;
+            background: rgba(245,158,11,.08); color: var(--accent); font-weight: 500;
         }
 
         /* ───────── PROJECTS ───────── */
@@ -208,7 +208,7 @@
         }
         .project-card:hover {
             border-color: var(--accent); transform: translateY(-6px);
-            box-shadow: 0 20px 60px rgba(59,130,246,.08);
+            box-shadow: 0 20px 60px rgba(245,158,11,.08);
         }
         .project-card .thumb {
             width: 100%; height: 200px; overflow: hidden;
@@ -270,7 +270,7 @@
 
         /* ───────── CONTACT ───────── */
         #contact {
-            background: radial-gradient(ellipse at 50% 100%, rgba(59,130,246,.06) 0%, transparent 60%);
+            background: radial-gradient(ellipse at 50% 100%, rgba(245,158,11,.06) 0%, transparent 60%);
         }
         .contact-grid {
             display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -284,7 +284,7 @@
         .contact-card:hover { border-color: var(--accent); transform: translateY(-4px); }
         .contact-card .icon {
             width: 48px; height: 48px; border-radius: 12px;
-            background: rgba(59,130,246,.1); margin: 0 auto 16px;
+            background: rgba(245,158,11,.1); margin: 0 auto 16px;
             display: flex; align-items: center; justify-content: center;
             font-size: 1.3rem;
         }
@@ -602,7 +602,7 @@
                 <!-- ValebotIA -->
                 <div class="project-card">
                     <div class="thumb" style="display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#1e293b,#0f172a);">
-                        <svg width="80" height="80" fill="none" stroke="#3b82f6" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 2a2 2 0 012 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 017 7h1a1 1 0 011 1v3a1 1 0 01-1 1h-1.07A7 7 0 0112 22a7 7 0 01-7.93-3H3a1 1 0 01-1-1v-3a1 1 0 011-1h1a7 7 0 017-7h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 012-2z"/><circle cx="9" cy="14" r="1"/><circle cx="15" cy="14" r="1"/></svg>
+                        <svg width="80" height="80" fill="none" stroke="#f59e0b" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 2a2 2 0 012 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 017 7h1a1 1 0 011 1v3a1 1 0 01-1 1h-1.07A7 7 0 0112 22a7 7 0 01-7.93-3H3a1 1 0 01-1-1v-3a1 1 0 011-1h1a7 7 0 017-7h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 012-2z"/><circle cx="9" cy="14" r="1"/><circle cx="15" cy="14" r="1"/></svg>
                         <span class="badge">IA / Chatbot</span>
                     </div>
                     <div class="body">
