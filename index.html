@@ -104,9 +104,9 @@
             cursor: pointer;
         }
         .btn-primary {
-            background: var(--accent); color: #fff;
+            background: var(--accent); color: #111;
         }
-        .btn-primary:hover { background: var(--accent-muted); color: #fff; transform: translateY(-2px); }
+        .btn-primary:hover { background: var(--accent-muted); color: #111; transform: translateY(-2px); }
         .btn-outline {
             background: transparent; color: var(--text);
             border: 1px solid var(--border);
@@ -335,11 +335,19 @@
             color: var(--text-muted); transition: all var(--transition);
         }
         .lang-toggle span.active {
-            background: var(--accent); color: #fff;
+            background: var(--accent); color: #111;
         }
         @media (max-width: 640px) {
             .lang-toggle { margin-left: 0; margin-right: 8px; }
         }
+
+        /* ───────── PARTICLE CANVAS ───────── */
+        #particleCanvas {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 0; pointer-events: none;
+        }
+        nav { z-index: 100; }
+        .hero, section, footer { position: relative; z-index: 1; }
 
         /* ───────── ANIMATIONS ───────── */
         .fade-up {
@@ -350,6 +358,9 @@
     </style>
 </head>
 <body>
+    <!-- ═══════ PARTICLES ═══════ -->
+    <canvas id="particleCanvas"></canvas>
+
     <!-- ═══════ NAV ═══════ -->
     <nav>
         <div class="container">
@@ -707,6 +718,108 @@
             <p data-i18n="footer">&copy; 2026 Ricardo Poblete. Todos los derechos reservados.</p>
         </div>
     </footer>
+
+    <!-- ═══════ PARTICLES JS ═══════ -->
+    <script>
+    (function() {
+        const canvas = document.getElementById('particleCanvas');
+        const ctx = canvas.getContext('2d');
+        let w, h, particles, mouse = { x: -9999, y: -9999 };
+        const PARTICLE_COUNT = 80;
+        const CONNECT_DIST = 140;
+        const MOUSE_RADIUS = 180;
+
+        function resize() {
+            w = canvas.width = window.innerWidth;
+            h = canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        function createParticle() {
+            return {
+                x: Math.random() * w,
+                y: Math.random() * h,
+                vx: (Math.random() - 0.5) * 0.4,
+                vy: (Math.random() - 0.5) * 0.4,
+                r: Math.random() * 1.5 + 0.5
+            };
+        }
+
+        particles = Array.from({ length: PARTICLE_COUNT }, createParticle);
+
+        document.addEventListener('mousemove', (e) => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+        });
+        document.addEventListener('mouseleave', () => {
+            mouse.x = -9999;
+            mouse.y = -9999;
+        });
+
+        function animate() {
+            ctx.clearRect(0, 0, w, h);
+
+            for (let i = 0; i < particles.length; i++) {
+                const p = particles[i];
+
+                // Mouse repulsion
+                const dxM = p.x - mouse.x;
+                const dyM = p.y - mouse.y;
+                const distM = Math.sqrt(dxM * dxM + dyM * dyM);
+                if (distM < MOUSE_RADIUS) {
+                    const force = (MOUSE_RADIUS - distM) / MOUSE_RADIUS * 0.08;
+                    p.vx += dxM / distM * force;
+                    p.vy += dyM / distM * force;
+                }
+
+                // Damping
+                p.vx *= 0.99;
+                p.vy *= 0.99;
+
+                p.x += p.vx;
+                p.y += p.vy;
+
+                // Wrap edges
+                if (p.x < -10) p.x = w + 10;
+                if (p.x > w + 10) p.x = -10;
+                if (p.y < -10) p.y = h + 10;
+                if (p.y > h + 10) p.y = -10;
+
+                // Draw particle
+                const glowAlpha = distM < MOUSE_RADIUS ? 0.9 : 0.35;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(245,158,11,' + glowAlpha + ')';
+                ctx.fill();
+
+                // Connect nearby particles
+                for (let j = i + 1; j < particles.length; j++) {
+                    const q = particles[j];
+                    const dx = p.x - q.x;
+                    const dy = p.y - q.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < CONNECT_DIST) {
+                        const alpha = (1 - dist / CONNECT_DIST) * 0.15;
+                        // Brighter near mouse
+                        const midX = (p.x + q.x) / 2;
+                        const midY = (p.y + q.y) / 2;
+                        const dMid = Math.sqrt((midX - mouse.x) ** 2 + (midY - mouse.y) ** 2);
+                        const boost = dMid < MOUSE_RADIUS ? (1 - dMid / MOUSE_RADIUS) * 0.4 : 0;
+                        ctx.beginPath();
+                        ctx.moveTo(p.x, p.y);
+                        ctx.lineTo(q.x, q.y);
+                        ctx.strokeStyle = 'rgba(245,158,11,' + (alpha + boost) + ')';
+                        ctx.lineWidth = 0.6;
+                        ctx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(animate);
+        }
+        animate();
+    })();
+    </script>
 
     <!-- ═══════ SCRIPTS ═══════ -->
     <script>
