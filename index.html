@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ricardo Poblete — Desarrollador de Software</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ───────── RESET & BASE ───────── */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --bg: #0b0d11;
+            --bg-card: #12151c;
+            --bg-card-hover: #181c26;
+            --accent: #3b82f6;
+            --accent-muted: #2563eb;
+            --text: #e4e7ed;
+            --text-muted: #8b92a5;
+            --border: #1e2330;
+            --radius: 12px;
+            --transition: .3s cubic-bezier(.4,0,.2,1);
+        }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+        a { color: var(--accent); text-decoration: none; transition: color var(--transition); }
+        a:hover { color: #60a5fa; }
+        img { display: block; max-width: 100%; }
+
+        /* ───────── LAYOUT ───────── */
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+        section { padding: 96px 0; }
+
+        /* ───────── NAV ───────── */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            background: rgba(11,13,17,.85);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+        }
+        nav .container {
+            display: flex; align-items: center; justify-content: space-between;
+            height: 64px;
+        }
+        nav .logo {
+            font-weight: 700; font-size: 1.1rem; color: var(--text);
+            letter-spacing: -.02em;
+        }
+        nav .logo span { color: var(--accent); }
+        nav ul { list-style: none; display: flex; gap: 32px; }
+        nav ul a {
+            color: var(--text-muted); font-size: .875rem; font-weight: 500;
+            transition: color var(--transition);
+        }
+        nav ul a:hover { color: var(--text); }
+
+        /* Mobile menu button */
+        .menu-toggle {
+            display: none; background: none; border: none; cursor: pointer;
+            padding: 8px;
+        }
+        .menu-toggle span {
+            display: block; width: 22px; height: 2px; background: var(--text);
+            margin: 5px 0; transition: var(--transition);
+        }
+
+        /* ───────── HERO ───────── */
+        .hero {
+            min-height: 100vh; display: flex; align-items: center;
+            padding-top: 64px;
+            background: radial-gradient(ellipse at 50% 0%, rgba(59,130,246,.08) 0%, transparent 60%);
+        }
+        .hero-inner {
+            display: flex; align-items: center; gap: 64px;
+        }
+        .hero-text { flex: 1; }
+        .hero-text .tag {
+            display: inline-block; padding: 6px 14px; border-radius: 20px;
+            background: rgba(59,130,246,.1); color: var(--accent);
+            font-size: .8rem; font-weight: 600; letter-spacing: .04em;
+            text-transform: uppercase; margin-bottom: 20px;
+        }
+        .hero-text h1 {
+            font-size: clamp(2.4rem, 5vw, 3.6rem); font-weight: 700;
+            line-height: 1.1; letter-spacing: -.03em; margin-bottom: 20px;
+        }
+        .hero-text h1 span { color: var(--accent); }
+        .hero-text p {
+            font-size: 1.1rem; color: var(--text-muted); max-width: 520px;
+            margin-bottom: 32px;
+        }
+        .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+        .btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 12px 28px; border-radius: 8px; font-size: .9rem;
+            font-weight: 600; transition: all var(--transition); border: none;
+            cursor: pointer;
+        }
+        .btn-primary {
+            background: var(--accent); color: #fff;
+        }
+        .btn-primary:hover { background: var(--accent-muted); color: #fff; transform: translateY(-2px); }
+        .btn-outline {
+            background: transparent; color: var(--text);
+            border: 1px solid var(--border);
+        }
+        .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+        .hero-visual {
+            flex: 0 0 320px; position: relative;
+        }
+        .hero-avatar {
+            width: 280px; height: 280px; border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid var(--border);
+            box-shadow: 0 0 80px rgba(59,130,246,.2);
+        }
+        .hero-avatar img {
+            width: 100%; height: 100%; object-fit: cover;
+        }
+        .hero-stats {
+            display: flex; gap: 32px; margin-top: 40px;
+            padding-top: 32px; border-top: 1px solid var(--border);
+        }
+        .hero-stats .stat h3 {
+            font-size: 1.8rem; font-weight: 700; color: var(--accent);
+        }
+        .hero-stats .stat p { font-size: .8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: .05em; }
+
+        /* ───────── SECTION HEADERS ───────── */
+        .section-header {
+            text-align: center; margin-bottom: 64px;
+        }
+        .section-header .overline {
+            display: inline-block; font-size: .75rem; font-weight: 600;
+            color: var(--accent); text-transform: uppercase;
+            letter-spacing: .1em; margin-bottom: 12px;
+        }
+        .section-header h2 {
+            font-size: clamp(1.8rem, 3.5vw, 2.4rem); font-weight: 700;
+            letter-spacing: -.02em;
+        }
+
+        /* ───────── ABOUT ───────── */
+        #about .about-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 64px;
+            align-items: start;
+        }
+        #about .about-text p {
+            color: var(--text-muted); margin-bottom: 16px; font-size: .95rem;
+        }
+        #about .info-list {
+            list-style: none; margin-top: 24px;
+        }
+        #about .info-list li {
+            display: flex; align-items: center; gap: 12px;
+            padding: 12px 0; border-bottom: 1px solid var(--border);
+            font-size: .9rem;
+        }
+        #about .info-list li strong {
+            min-width: 120px; color: var(--text-muted); font-weight: 500;
+        }
+
+        /* ───────── SKILLS ───────── */
+        .skills-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+        }
+        .skill-card {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 28px;
+            transition: all var(--transition);
+        }
+        .skill-card:hover {
+            background: var(--bg-card-hover); border-color: var(--accent);
+            transform: translateY(-4px);
+        }
+        .skill-card .icon {
+            width: 44px; height: 44px; border-radius: 10px;
+            background: rgba(59,130,246,.1);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.2rem; margin-bottom: 16px;
+        }
+        .skill-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 8px; }
+        .skill-card p { font-size: .85rem; color: var(--text-muted); }
+        .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+        .skill-tags span {
+            padding: 4px 10px; border-radius: 6px; font-size: .75rem;
+            background: rgba(59,130,246,.08); color: var(--accent); font-weight: 500;
+        }
+
+        /* ───────── PROJECTS ───────── */
+        .projects-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 28px;
+        }
+        .project-card {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius); overflow: hidden;
+            transition: all var(--transition);
+        }
+        .project-card:hover {
+            border-color: var(--accent); transform: translateY(-6px);
+            box-shadow: 0 20px 60px rgba(59,130,246,.08);
+        }
+        .project-card .thumb {
+            width: 100%; height: 200px; overflow: hidden;
+            background: var(--bg); position: relative;
+        }
+        .project-card .thumb img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform var(--transition);
+        }
+        .project-card:hover .thumb img { transform: scale(1.05); }
+        .project-card .thumb .badge {
+            position: absolute; top: 12px; left: 12px;
+            padding: 4px 12px; border-radius: 6px;
+            background: rgba(11,13,17,.85); backdrop-filter: blur(8px);
+            font-size: .72rem; font-weight: 600; color: var(--accent);
+            text-transform: uppercase; letter-spacing: .04em;
+        }
+        .project-card .body { padding: 24px; }
+        .project-card .body h3 { font-size: 1.15rem; font-weight: 600; margin-bottom: 8px; }
+        .project-card .body p { font-size: .85rem; color: var(--text-muted); margin-bottom: 16px; line-height: 1.6; }
+        .project-card .tech-stack { display: flex; flex-wrap: wrap; gap: 6px; }
+        .project-card .tech-stack span {
+            padding: 4px 10px; border-radius: 6px; font-size: .72rem;
+            background: rgba(255,255,255,.05); color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* Featured project */
+        .project-featured {
+            grid-column: 1 / -1;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+        }
+        .project-featured .thumb { height: 100%; min-height: 320px; }
+        .project-featured .body { display: flex; flex-direction: column; justify-content: center; padding: 40px; }
+        .project-featured .body h3 { font-size: 1.4rem; }
+
+        /* ───────── EXPERIENCE ───────── */
+        .timeline { position: relative; padding-left: 32px; }
+        .timeline::before {
+            content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+            width: 2px; background: var(--border);
+        }
+        .timeline-item {
+            position: relative; padding-bottom: 48px;
+        }
+        .timeline-item:last-child { padding-bottom: 0; }
+        .timeline-item::before {
+            content: ''; position: absolute; left: -37px; top: 6px;
+            width: 12px; height: 12px; border-radius: 50%;
+            background: var(--accent); border: 3px solid var(--bg);
+        }
+        .timeline-item .date {
+            font-size: .8rem; color: var(--accent); font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .timeline-item h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 4px; }
+        .timeline-item .company { font-size: .9rem; color: var(--text-muted); margin-bottom: 12px; }
+        .timeline-item p { font-size: .88rem; color: var(--text-muted); line-height: 1.7; }
+
+        /* ───────── CONTACT ───────── */
+        #contact {
+            background: radial-gradient(ellipse at 50% 100%, rgba(59,130,246,.06) 0%, transparent 60%);
+        }
+        .contact-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 24px; max-width: 700px; margin: 0 auto;
+        }
+        .contact-card {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 28px; text-align: center;
+            transition: all var(--transition);
+        }
+        .contact-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+        .contact-card .icon {
+            width: 48px; height: 48px; border-radius: 12px;
+            background: rgba(59,130,246,.1); margin: 0 auto 16px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.3rem;
+        }
+        .contact-card h4 { font-size: .85rem; color: var(--text-muted); margin-bottom: 4px; }
+        .contact-card p { font-size: .95rem; font-weight: 500; }
+
+        /* ───────── FOOTER ───────── */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 32px 0; text-align: center;
+        }
+        footer p { font-size: .8rem; color: var(--text-muted); }
+
+        /* ───────── RESPONSIVENESS ───────── */
+        @media (max-width: 900px) {
+            .hero-inner { flex-direction: column-reverse; text-align: center; }
+            .hero-visual { flex: none; }
+            .hero-text p { margin-left: auto; margin-right: auto; }
+            .hero-actions { justify-content: center; }
+            .hero-stats { justify-content: center; }
+            #about .about-grid { grid-template-columns: 1fr; }
+            .project-featured { grid-template-columns: 1fr; }
+            .project-featured .thumb { min-height: 220px; }
+        }
+        @media (max-width: 640px) {
+            nav ul { display: none; }
+            nav ul.active {
+                display: flex; flex-direction: column; position: absolute;
+                top: 64px; left: 0; right: 0; background: rgba(11,13,17,.97);
+                padding: 24px; gap: 20px; border-bottom: 1px solid var(--border);
+            }
+            .menu-toggle { display: block; }
+            .projects-grid { grid-template-columns: 1fr; }
+            section { padding: 64px 0; }
+        }
+
+        /* ───────── ANIMATIONS ───────── */
+        .fade-up {
+            opacity: 0; transform: translateY(30px);
+            transition: opacity .6s ease, transform .6s ease;
+        }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body>
+    <!-- ═══════ NAV ═══════ -->
+    <nav>
+        <div class="container">
+            <div class="logo">R<span>.</span>Poblete</div>
+            <button class="menu-toggle" aria-label="Menú" onclick="document.querySelector('nav ul').classList.toggle('active')">
+                <span></span><span></span><span></span>
+            </button>
+            <ul>
+                <li><a href="#about">Sobre mí</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Proyectos</a></li>
+                <li><a href="#experience">Experiencia</a></li>
+                <li><a href="#contact">Contacto</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ═══════ HERO ═══════ -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-inner">
+                <div class="hero-text">
+                    <span class="tag">Disponible para nuevos proyectos</span>
+                    <h1>Ricardo <span>Poblete</span></h1>
+                    <p>Desarrollador de Software Fullstack con más de 4 años de experiencia en arquitecturas cloud, DevOps y desarrollo de soluciones escalables.</p>
+                    <div class="hero-actions">
+                        <a href="#projects" class="btn btn-primary">
+                            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+                            Ver proyectos
+                        </a>
+                        <a href="#contact" class="btn btn-outline">
+                            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+                            Contacto
+                        </a>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <h3>4+</h3>
+                            <p>Años experiencia</p>
+                        </div>
+                        <div class="stat">
+                            <h3>6+</h3>
+                            <p>Proyectos</p>
+                        </div>
+                        <div class="stat">
+                            <h3>AWS</h3>
+                            <p>Cloud Certified</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="hero-avatar"><img src="assets/img/yo.jpeg" alt="Ricardo Poblete"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════ ABOUT ═══════ -->
+    <section id="about">
+        <div class="container">
+            <div class="section-header fade-up">
+                <span class="overline">Sobre mí</span>
+                <h2>Quién soy</h2>
+            </div>
+            <div class="about-grid fade-up">
+                <div class="about-text">
+                    <p>Soy Ricardo Poblete, desarrollador de software chileno, graduado de Duoc UC como Analista Programador Computacional. Con más de 4 años de experiencia, me especializo en desarrollo Fullstack y soluciones en la nube.</p>
+                    <p>Más allá de lo técnico, soy un apasionado de los marcos de trabajo ágiles (Scrum, XP, DevOps) que optimizan la entrega de valor. Mi enfoque está en la arquitectura limpia, código mantenible y la mejora continua.</p>
+                    <p>Tengo una fuerte dedicación al área de DevOps e infraestructura cloud, donde concentro gran parte de mi desarrollo profesional, con experiencia práctica en AWS, Azure y GCP.</p>
+                </div>
+                <div>
+                    <ul class="info-list">
+                        <li><strong>Ubicación</strong> Chile</li>
+                        <li><strong>Experiencia</strong> 4+ años</li>
+                        <li><strong>Enfoque</strong> Fullstack & Cloud</li>
+                        <li><strong>Inglés</strong> Nivel B2</li>
+                        <li><strong>Educación</strong> Duoc UC — Analista Programador</li>
+                        <li><strong>Certificación</strong> AWS Cloud Practitioner</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════ SKILLS ═══════ -->
+    <section id="skills">
+        <div class="container">
+            <div class="section-header fade-up">
+                <span class="overline">Habilidades</span>
+                <h2>Stack Tecnológico</h2>
+            </div>
+            <div class="skills-grid fade-up">
+                <div class="skill-card">
+                    <div class="icon">⚡</div>
+                    <h3>Backend</h3>
+                    <p>Desarrollo de APIs robustas y servicios escalables</p>
+                    <div class="skill-tags">
+                        <span>Node.js</span><span>NestJS</span><span>Express</span>
+                        <span>Python</span><span>Django</span><span>Flask</span>
+                        <span>FastAPI</span><span>TypeScript</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="icon">🎨</div>
+                    <h3>Frontend</h3>
+                    <p>Interfaces modernas y experiencias de usuario optimizadas</p>
+                    <div class="skill-tags">
+                        <span>React</span><span>Next.js</span><span>Vue.js 3</span>
+                        <span>Qwik</span><span>Ionic</span><span>Tailwind</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="icon">☁️</div>
+                    <h3>Cloud & DevOps</h3>
+                    <p>Infraestructura, CI/CD y despliegue automatizado</p>
+                    <div class="skill-tags">
+                        <span>AWS</span><span>Azure</span><span>GCP</span>
+                        <span>Docker</span><span>Kubernetes</span><span>CloudFormation</span>
+                        <span>GitHub Actions</span><span>CI/CD</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="icon">🗄️</div>
+                    <h3>Bases de Datos</h3>
+                    <p>Diseño, optimización y administración de datos</p>
+                    <div class="skill-tags">
+                        <span>PostgreSQL</span><span>MySQL</span><span>Oracle</span>
+                        <span>DynamoDB</span><span>PL/SQL</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="icon">🏗️</div>
+                    <h3>Arquitectura</h3>
+                    <p>Patrones y principios para código mantenible</p>
+                    <div class="skill-tags">
+                        <span>Hexagonal</span><span>DDD</span><span>SOLID</span>
+                        <span>Microservicios</span><span>Event-Driven</span>
+                        <span>Clean Code</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="icon">🔧</div>
+                    <h3>Metodologías & Tools</h3>
+                    <p>Procesos ágiles y herramientas de colaboración</p>
+                    <div class="skill-tags">
+                        <span>Scrum</span><span>XP</span><span>Jira</span>
+                        <span>Git</span><span>GitFlow</span><span>Jest</span>
+                        <span>Cypress</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════ PROJECTS ═══════ -->
+    <section id="projects">
+        <div class="container">
+            <div class="section-header fade-up">
+                <span class="overline">Portafolio</span>
+                <h2>Proyectos Destacados</h2>
+            </div>
+            <div class="projects-grid fade-up">
+
+                <!-- GeoVisor — Featured -->
+                <div class="project-card project-featured">
+                    <div class="thumb">
+                        <img src="assets/img/geovisor-1.png" alt="GeoVisor — Análisis Geoespacial Territorial">
+                        <span class="badge">Proyecto destacado</span>
+                    </div>
+                    <div class="body">
+                        <h3>GeoVisor — Análisis Geoespacial Territorial</h3>
+                        <p>Plataforma web enterprise para análisis geoespacial territorial con validación ambiental automatizada, generación de reportes PDF interactivos e integración de IA (Google Gemini) para evaluación SEIA. Soporta GeoJSON, KML, KMZ y coordenadas UTM. Incluye análisis de intersección preciso con GeoPandas/Shapely, capas ambientales SNASPE, humedales urbanos y zonas protegidas.</p>
+                        <div class="tech-stack">
+                            <span>React 19</span><span>TypeScript</span><span>FastAPI</span>
+                            <span>Python</span><span>MapLibre GL</span><span>GeoPandas</span>
+                            <span>Tailwind CSS</span><span>Google Gemini AI</span><span>Vite</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Municipalidad de Temuco -->
+                <div class="project-card">
+                    <div class="thumb">
+                        <img src="assets/img/geovisor-2.png" alt="Sistema Municipalidad de Temuco" style="object-position: top;">
+                        <span class="badge">Gobierno</span>
+                    </div>
+                    <div class="body">
+                        <h3>Sistema de Videoconferencia — Municipalidad de Temuco</h3>
+                        <p>Plataforma de programación de videoconferencias para la Municipalidad de Temuco, con paneles administrativos y de ciudadanos. Integración con Transbank WebPay para pagos y plataforma Zoom. Incluye diagramas BPMN del proceso.</p>
+                        <div class="tech-stack">
+                            <span>Django</span><span>Python</span><span>PostgreSQL</span>
+                            <span>Docker</span><span>Transbank</span><span>Zoom API</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Municipalidad de Pichilemu -->
+                <div class="project-card">
+                    <div class="thumb">
+                        <img src="assets/img/pichilemu-preview.jpeg" alt="Sistema Seguridad Pichilemu">
+                        <span class="badge">Gobierno</span>
+                    </div>
+                    <div class="body">
+                        <h3>Sistema de Seguridad — Municipalidad de Pichilemu</h3>
+                        <p>Plataforma enfocada en mejorar la seguridad ciudadana de Pichilemu. Desplegado en servidor VPS Linux. Diseño de solución con diagramas BPMN y flujos operacionales documentados.</p>
+                        <div class="tech-stack">
+                            <span>Django</span><span>REST Framework</span><span>PostgreSQL</span>
+                            <span>Python</span><span>Linux VPS</span><span>Nginx</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ChileCompra -->
+                <div class="project-card">
+                    <div class="thumb">
+                        <img src="assets/img/geovisor-3.png" alt="Proyecto ChileCompra">
+                        <span class="badge">Gobierno</span>
+                    </div>
+                    <div class="body">
+                        <h3>Proyecto ChileCompra</h3>
+                        <p>Desarrollo de especificaciones técnicas y solución de software para la plataforma de compras públicas ChileCompra. Documentación completa del proyecto con requerimientos y análisis técnico.</p>
+                        <div class="tech-stack">
+                            <span>Análisis</span><span>Especificaciones</span><span>Documentación</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SpiritBox App -->
+                <div class="project-card">
+                    <div class="thumb">
+                        <img src="assets/img/spiritbox-app.jpg" alt="SpiritBoxApp">
+                        <span class="badge">Mobile App</span>
+                    </div>
+                    <div class="body">
+                        <h3>SpiritBox App</h3>
+                        <p>Aplicación móvil multiplataforma desarrollada con Ionic Framework y ReactJS. Diseño de interfaz intuitivo para experiencia de usuario optimizada en dispositivos iOS y Android.</p>
+                        <div class="tech-stack">
+                            <span>Ionic</span><span>React</span><span>TypeScript</span>
+                            <span>Mobile</span><span>Cross-platform</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ValebotIA -->
+                <div class="project-card">
+                    <div class="thumb" style="display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#1e293b,#0f172a);">
+                        <svg width="80" height="80" fill="none" stroke="#3b82f6" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 2a2 2 0 012 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 017 7h1a1 1 0 011 1v3a1 1 0 01-1 1h-1.07A7 7 0 0112 22a7 7 0 01-7.93-3H3a1 1 0 01-1-1v-3a1 1 0 011-1h1a7 7 0 017-7h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 012-2z"/><circle cx="9" cy="14" r="1"/><circle cx="15" cy="14" r="1"/></svg>
+                        <span class="badge">IA / Chatbot</span>
+                    </div>
+                    <div class="body">
+                        <h3>ValebotIA — Chatbot Inteligente</h3>
+                        <p>Frontend de chatbot con inteligencia artificial basado en LangChain y LangGraph. Interfaz moderna con Next.js 14, integración con Supabase y componentes Radix UI.</p>
+                        <div class="tech-stack">
+                            <span>Next.js 14</span><span>React 19</span><span>LangChain</span>
+                            <span>Supabase</span><span>TypeScript</span><span>Tailwind</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════ EXPERIENCE ═══════ -->
+    <section id="experience">
+        <div class="container">
+            <div class="section-header fade-up">
+                <span class="overline">Trayectoria</span>
+                <h2>Experiencia Laboral</h2>
+            </div>
+            <div class="timeline fade-up">
+
+                <div class="timeline-item">
+                    <span class="date">Mayo 2025 — Actualidad</span>
+                    <h3>AWS Developer</h3>
+                    <div class="company">BC Tecnología — AFP Cuprum</div>
+                    <p>Implementación de soluciones escalables en la nube para la reforma de pensiones. Stack: AWS Glue, CDK, S3, CloudFront, Lambda, API Gateway, Python.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <span class="date">Marzo 2024 — Mayo 2025</span>
+                    <h3>AWS Developer</h3>
+                    <div class="company">TicMoAI</div>
+                    <p>Implementación de soluciones en AWS y Azure, monitoreo de infraestructura cloud híbrida. Stack: AWS, Azure DevOps, CloudFormation, S3, CloudFront, Python, TypeScript, GCP.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <span class="date">Julio 2023 — Enero 2024</span>
+                    <h3>Fullstack Developer</h3>
+                    <div class="company">MEETCARD SPA</div>
+                    <p>Desarrollo, mantenimiento y refactorización de código. Implementación de soluciones en AWS y flujos de trabajo ágiles. Stack: NestJS, TypeScript, VueJS 3, QuasarJS, AWS ECS.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <span class="date">Marzo 2023 — Julio 2023</span>
+                    <h3>Fullstack Developer</h3>
+                    <div class="company">Simbiótica SPA</div>
+                    <p>Desarrollo backend con Node.js y arquitectura hexagonal con principios SOLID. Frontend con NextJS. Infraestructura con AWS Lambda y CloudFormation. Stack: NestJS, TypeScript, ReactJS, NextJS, AWS.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <span class="date">Septiembre 2022 — Febrero 2023</span>
+                    <h3>Analista de Desarrollo</h3>
+                    <div class="company">GERET</div>
+                    <p>Automatización de procesos e informes en servidor Linux CentOS con Python. Consultas SQL y PL/SQL Oracle. Stack: Python, Django REST, ReactJS, PostgreSQL.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <span class="date">Marzo 2021 — Abril 2022</span>
+                    <h3>Full Stack Developer (Proyectos)</h3>
+                    <div class="company">CRUD SPA</div>
+                    <p>Proyectos para Municipalidad de Temuco (videoconferencias) y Municipalidad de Pichilemu (seguridad ciudadana). Stack: Django, PostgreSQL, Docker, Flask, Node ExpressJS.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════ CONTACT ═══════ -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-header fade-up">
+                <span class="overline">Contacto</span>
+                <h2>Hablemos</h2>
+            </div>
+            <div class="contact-grid fade-up">
+                <a href="mailto:ricardo.ignacio18@hotmail.com" class="contact-card">
+                    <div class="icon">✉️</div>
+                    <h4>Email</h4>
+                    <p>ricardo.ignacio18@hotmail.com</p>
+                </a>
+                <a href="https://www.linkedin.com/in/ricardo-poblete-galvez-7112a01a4" target="_blank" rel="noopener noreferrer" class="contact-card">
+                    <div class="icon">💼</div>
+                    <h4>LinkedIn</h4>
+                    <p>Ricardo Poblete</p>
+                </a>
+                <a href="https://github.com/rpobleteg" target="_blank" rel="noopener noreferrer" class="contact-card">
+                    <div class="icon">🐙</div>
+                    <h4>GitHub</h4>
+                    <p>SonneSTAR</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════ FOOTER ═══════ -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Ricardo Poblete. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- ═══════ SCRIPTS ═══════ -->
+    <script>
+        // Intersection Observer for fade-up animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+        // Close mobile menu on link click
+        document.querySelectorAll('nav ul a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.querySelector('nav ul').classList.remove('active');
+            });
+        });
+
+        // Navbar shadow on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            nav.style.boxShadow = window.scrollY > 10
+                ? '0 4px 30px rgba(0,0,0,.3)'
+                : 'none';
+        });
+    </script>
+</body>
+</html>
