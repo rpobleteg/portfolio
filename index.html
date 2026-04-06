@@ -282,6 +282,13 @@
         .btn-drive svg { flex-shrink: 0; }
 
         /* ───────── EXPERIENCE ───────── */
+        .timeline-item .own-badge {
+            display: inline-block; margin-left: 10px;
+            padding: 2px 10px; border-radius: 6px; font-size: .7rem;
+            font-weight: 700; background: rgba(245,158,11,.15);
+            color: var(--accent); vertical-align: middle;
+            text-transform: uppercase; letter-spacing: .05em;
+        }
         .timeline { position: relative; padding-left: 32px; }
         .timeline::before {
             content: ''; position: absolute; left: 0; top: 0; bottom: 0;
@@ -483,6 +490,7 @@
                 </div>
                 <div>
                     <ul class="info-list">
+                        <li data-i18n-html="about.info0"><strong>Consultora</strong> ExtremeDev SpA</li>
                         <li data-i18n-html="about.info1"><strong>Ubicación</strong> Chile</li>
                         <li data-i18n-html="about.info2"><strong>Experiencia</strong> 4+ años</li>
                         <li data-i18n-html="about.info3"><strong>Enfoque</strong> Fullstack & Cloud</li>
@@ -717,6 +725,13 @@
             <div class="timeline fade-up">
 
                 <div class="timeline-item">
+                    <span class="date" data-i18n="exp.date0">2021 — Actualidad</span>
+                    <h3>CEO &amp; Líder Técnico <span class="own-badge" data-i18n="exp.own_badge">Fundador</span></h3>
+                    <div class="company">ExtremeDev SpA</div>
+                    <p data-i18n="exp.desc0">Consultora tecnológica independiente a través de la cual se canalizan proyectos de desarrollo de software, consultoría cloud y soluciones digitales. Emisión de boletas y facturas, gestión de contratos con clientes públicos y privados, y dirección técnica de cada proyecto.</p>
+                </div>
+
+                <div class="timeline-item">
                     <span class="date" data-i18n="exp.date1">Mayo 2025 — Actualidad</span>
                     <h3>AWS Developer</h3>
                     <div class="company">BC Tecnología — AFP Cuprum</div>
@@ -930,7 +945,7 @@
                 'hero.stat1': 'Años experiencia', 'hero.stat2': 'Proyectos',
                 'about.overline': 'Sobre mí', 'about.title': 'Quién soy',
                 'about.p1': '¡Hola! Soy Ricardo Poblete, desarrollador de software chileno graduado de Duoc UC como Analista Programador Computacional, y un apasionado de la tecnología cloud y la arquitectura de software limpia. Cuento con más de 4 años de experiencia profesional en empresas de tecnología, donde he participado en proyectos para instituciones gubernamentales, el sector financiero y startups tecnológicas.',
-                'about.p2': 'Me especializo en desarrollo Fullstack y soluciones en la nube, con dominio práctico en AWS, Azure y GCP. Disfruto trabajando con marcos ágiles (Scrum, XP, DevOps) que optimizan cada entrega, y mi filosofía es escribir código limpio, mantenible y orientado a resultados. Actualmente me desempeño como AWS Developer en BC Tecnología para AFP Cuprum, implementando soluciones cloud escalables para la reforma de pensiones.',
+                'about.p2': 'Me especializo en desarrollo Fullstack y soluciones en la nube, con dominio práctico en AWS, Azure y GCP. Disfruto trabajando con marcos ágiles (Scrum, XP, DevOps) que optimizan cada entrega, y mi filosofía es escribir código limpio, mantenible y orientado a resultados. Actualmente me desempeño como AWS Developer en BC Tecnología para AFP Cuprum, implementando soluciones cloud escalables para la reforma de pensiones. Además, soy CEO y Líder Técnico de <strong>ExtremeDev SpA</strong>, mi consultora independiente a través de la cual canalizo proyectos, emito boletas y facturas, y ofrezco servicios tecnológicos a clientes públicos y privados.',
                 'about.p3': 'Si estás buscando un desarrollador comprometido para tu próximo proyecto, esto es lo que te garantizo:',
                 'about.v1': 'Soluciones personalizadas y escalables, desarrolladas a medida según tus necesidades de negocio.',
                 'about.v2': 'Código limpio con arquitectura sólida — Hexagonal, DDD, SOLID y Microservicios.',
@@ -938,6 +953,7 @@
                 'about.v4': 'Documentación técnica completa y transparente en cada etapa del proyecto.',
                 'about.v5': 'Comunicación constante y respuesta ágil ante cualquier consulta o ajuste.',
                 'about.v6': 'Metodologías ágiles para entregas iterativas, con visibilidad total del progreso.',
+                'about.info0': '<strong>Consultora</strong> ExtremeDev SpA',
                 'about.info1': '<strong>Ubicación</strong> Chile',
                 'about.info2': '<strong>Experiencia</strong> 4+ años',
                 'about.info3': '<strong>Enfoque</strong> Fullstack & Cloud',
@@ -971,6 +987,9 @@
                 'projects.vale_desc': 'Frontend de chatbot con inteligencia artificial basado en LangChain y LangGraph. Interfaz moderna con Next.js 14, integración con Supabase y componentes Radix UI.',
                 'projects.drive_btn': 'Ver documentación completa en Drive',
                 'exp.overline': 'Trayectoria', 'exp.title': 'Experiencia Laboral',
+                'exp.date0': '2021 — Actualidad',
+                'exp.own_badge': 'Fundador',
+                'exp.desc0': 'Consultora tecnológica independiente a través de la cual se canalizan proyectos de desarrollo de software, consultoría cloud y soluciones digitales. Emisión de boletas y facturas, gestión de contratos con clientes públicos y privados, y dirección técnica de cada proyecto.',
                 'exp.date1': 'Mayo 2025 — Actualidad',
                 'exp.desc1': 'Implementación de soluciones escalables en la nube para la reforma de pensiones. Stack: AWS Glue, CDK, S3, CloudFront, Lambda, API Gateway, Python.',
                 'exp.date2': 'Marzo 2024 — Mayo 2025',
@@ -998,7 +1017,7 @@
                 'hero.stat1': 'Years experience', 'hero.stat2': 'Projects',
                 'about.overline': 'About me', 'about.title': 'Who I am',
                 'about.p1': 'Hi there! I\'m Ricardo Poblete, a Chilean software developer graduated from Duoc UC as a Computer Programming Analyst, with a deep passion for cloud technology and clean software architecture. I bring 4+ years of professional experience working at tech companies, contributing to projects for government institutions, the financial sector and tech startups.',
-                'about.p2': 'I specialize in Fullstack development and cloud solutions, with hands-on expertise in AWS, Azure and GCP. I thrive working with agile frameworks (Scrum, XP, DevOps) that optimize every delivery, and my philosophy is writing clean, maintainable and results-driven code. I currently work as an AWS Developer at BC Tecnología for AFP Cuprum, building scalable cloud solutions for pension reform.',
+                'about.p2': 'I specialize in Fullstack development and cloud solutions, with hands-on expertise in AWS, Azure and GCP. I thrive working with agile frameworks (Scrum, XP, DevOps) that optimize every delivery, and my philosophy is writing clean, maintainable and results-driven code. I currently work as an AWS Developer at BC Tecnología for AFP Cuprum, building scalable cloud solutions for pension reform. I am also CEO and Technical Lead of <strong>ExtremeDev SpA</strong>, my independent consulting firm through which I channel projects, issue invoices, and offer technology services to public and private clients.',
                 'about.p3': 'If you\'re looking for a committed developer for your next project, here\'s what I guarantee:',
                 'about.v1': 'Custom, scalable solutions tailored to your specific business needs.',
                 'about.v2': 'Clean code with solid architecture — Hexagonal, DDD, SOLID and Microservices.',
@@ -1006,6 +1025,7 @@
                 'about.v4': 'Complete and transparent technical documentation at every project stage.',
                 'about.v5': 'Constant communication and agile response to any questions or adjustments.',
                 'about.v6': 'Agile methodologies for iterative deliveries, with full visibility of progress.',
+                'about.info0': '<strong>Firm</strong> ExtremeDev SpA',
                 'about.info1': '<strong>Location</strong> Chile',
                 'about.info2': '<strong>Experience</strong> 4+ years',
                 'about.info3': '<strong>Focus</strong> Fullstack & Cloud',
@@ -1039,6 +1059,9 @@
                 'projects.vale_desc': 'AI-powered chatbot frontend built with LangChain and LangGraph. Modern interface with Next.js 14, Supabase integration and Radix UI components.',
                 'projects.drive_btn': 'View full documentation on Drive',
                 'exp.overline': 'Career', 'exp.title': 'Work Experience',
+                'exp.date0': '2021 — Present',
+                'exp.own_badge': 'Founder',
+                'exp.desc0': 'Independent technology consulting firm through which software development projects, cloud consulting and digital solutions are channeled. Invoicing, contract management with public and private clients, and technical leadership of every project.',
                 'exp.date1': 'May 2025 — Present',
                 'exp.desc1': 'Implementing scalable cloud solutions for pension reform. Stack: AWS Glue, CDK, S3, CloudFront, Lambda, API Gateway, Python.',
                 'exp.date2': 'March 2024 — May 2025',
