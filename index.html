@@ -262,6 +262,25 @@
         .project-featured .body { display: flex; flex-direction: column; justify-content: center; padding: 40px; }
         .project-featured .body h3 { font-size: 1.4rem; }
 
+        /* ───────── DRIVE BUTTON ───────── */
+        .drive-cta {
+            text-align: center; margin-top: 48px;
+        }
+        .btn-drive {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 14px 32px; border-radius: 10px; font-size: .95rem;
+            font-weight: 600; border: 1px solid var(--border);
+            background: var(--bg-card); color: var(--text);
+            transition: all var(--transition); cursor: pointer;
+            text-decoration: none;
+        }
+        .btn-drive:hover {
+            border-color: var(--accent); color: var(--accent);
+            background: var(--bg-card-hover); transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(245,158,11,.12);
+        }
+        .btn-drive svg { flex-shrink: 0; }
+
         /* ───────── EXPERIENCE ───────── */
         .timeline { position: relative; padding-left: 32px; }
         .timeline::before {
@@ -670,6 +689,21 @@
                 </div>
 
             </div>
+            <div class="drive-cta fade-up">
+                <a href="https://drive.google.com/drive/folders/16PUuVHZuRMan3IPGudXYGKb5PXEIgy91?usp=sharing"
+                   target="_blank" rel="noopener noreferrer" class="btn-drive">
+                    <!-- Google Drive icon -->
+                    <svg width="22" height="22" viewBox="0 0 87.3 78" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6.6 66.85l3.85 6.65c.8 1.4 1.95 2.5 3.3 3.3L28.6 51H0c0 1.55.4 3.1 1.2 4.5z" fill="#0066DA"/>
+                        <path d="M43.65 25L29.25 0c-1.35.8-2.5 1.9-3.3 3.3L1.2 46.5A9.06 9.06 0 000 51h28.6z" fill="#00AC47"/>
+                        <path d="M73.55 76.8c1.35-.8 2.5-1.9 3.3-3.3l1.6-2.75 7.65-13.25c.8-1.4 1.2-2.95 1.2-4.5H59l6.1 11.25z" fill="#EA4335"/>
+                        <path d="M43.65 25L57.95 0c-1.55-.45-3.2-.7-4.85-.7H34.2c-1.65 0-3.3.25-4.85.7z" fill="#00832D"/>
+                        <path d="M59 51H28.6L13.75 76.8c1.55.45 3.2.7 4.85.7h49.2c1.65 0 3.3-.25 4.85-.7z" fill="#2684FC"/>
+                        <path d="M73.4 26.5l-13.25-23c-.8-1.4-1.95-2.5-3.3-3.3L43.65 25 59 51h28.55c0-1.55-.4-3.1-1.2-4.5z" fill="#FFBA00"/>
+                    </svg>
+                    <span data-i18n="projects.drive_btn">Ver documentación completa en Drive</span>
+                </a>
+            </div>
         </div>
     </section>
 
@@ -935,6 +969,7 @@
                 'projects.spirit_desc': 'Aplicación móvil multiplataforma desarrollada con Ionic Framework y ReactJS. Diseño de interfaz intuitivo para experiencia de usuario optimizada en dispositivos iOS y Android.',
                 'projects.vale_title': 'ValebotIA — Chatbot Inteligente',
                 'projects.vale_desc': 'Frontend de chatbot con inteligencia artificial basado en LangChain y LangGraph. Interfaz moderna con Next.js 14, integración con Supabase y componentes Radix UI.',
+                'projects.drive_btn': 'Ver documentación completa en Drive',
                 'exp.overline': 'Trayectoria', 'exp.title': 'Experiencia Laboral',
                 'exp.date1': 'Mayo 2025 — Actualidad',
                 'exp.desc1': 'Implementación de soluciones escalables en la nube para la reforma de pensiones. Stack: AWS Glue, CDK, S3, CloudFront, Lambda, API Gateway, Python.',
@@ -1002,6 +1037,7 @@
                 'projects.spirit_desc': 'Cross-platform mobile application built with Ionic Framework and ReactJS. Intuitive interface design for optimized user experience on iOS and Android devices.',
                 'projects.vale_title': 'ValebotIA — Intelligent Chatbot',
                 'projects.vale_desc': 'AI-powered chatbot frontend built with LangChain and LangGraph. Modern interface with Next.js 14, Supabase integration and Radix UI components.',
+                'projects.drive_btn': 'View full documentation on Drive',
                 'exp.overline': 'Career', 'exp.title': 'Work Experience',
                 'exp.date1': 'May 2025 — Present',
                 'exp.desc1': 'Implementing scalable cloud solutions for pension reform. Stack: AWS Glue, CDK, S3, CloudFront, Lambda, API Gateway, Python.',
